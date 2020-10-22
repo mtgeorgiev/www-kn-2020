@@ -4,14 +4,19 @@ abstract class User implements JsonSerializable {
     
     private int $id;
 
+    private string $email;
+
+    private string $password;
+
     private string $name;
 
     private string $phoneNumber;
 
-    public function __construct(int $id, string $name, string $phoneNumber) {
+    public function __construct(int $id, string $name, string $phoneNumber, string $email) {
         $this->id = $id;
         $this->name = $name;
         $this->phoneNumber = $phoneNumber;
+        $this->email = $email;
     }
 
     public function getId(): int {
@@ -26,9 +31,9 @@ abstract class User implements JsonSerializable {
         return $this->phoneNumber;
     }
 
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
 
-        $fieldsToSerialize = ['id', 'name', 'phoneNumber'];
+        $fieldsToSerialize = ['id', 'name', 'phoneNumber', 'email'];
 
         $jsonArray = [];
 

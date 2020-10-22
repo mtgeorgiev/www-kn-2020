@@ -6,8 +6,8 @@ class Resident extends User {
 
     private string $apartmentNumber;
 
-    public function __construct(int $id, string $name, string $phoneNumber, string $apartmentNumber, string $status) {
-        parent::__construct($id, $name, $phoneNumber);
+    public function __construct(int $id, string $name, string $phoneNumber, string $email, string $apartmentNumber, string $status) {
+        parent::__construct($id, $name, $phoneNumber, $email);
         $this->status = $status;
         $this->apartmentNumber = $apartmentNumber;
     }
@@ -20,10 +20,16 @@ class Resident extends User {
         return $status;
     }
 
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return array_merge(parent::jsonSerialize(), [
             'status' => $this->status,
             'apartmentNumber' => $this->apartmentNumber,
         ]);
+    }
+
+    public static function createFromArray(array $residentArray): Resident {
+
+        return new Resident($residentArray['id'], $residentArray['name'], $residentArray['phoneNumber'],
+            $residentArray['email'], $residentArray['appartmentNumber'], $residentArray['status']);
     }
 }
