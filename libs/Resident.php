@@ -20,6 +20,10 @@ class Resident extends User {
         return $status;
     }
 
+    public function toArray(): array {
+        return $this->jsonSerialize();
+    }
+
     public function jsonSerialize(): array {
         return array_merge(parent::jsonSerialize(), [
             'status' => $this->status,

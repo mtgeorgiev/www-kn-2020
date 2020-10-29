@@ -27,4 +27,19 @@ class UserController {
 
     }
 
+    public function addNewResident(NewResidentRequest $residentRequest): bool {
+
+        $connection = (new Db())->getConnection();
+
+        $insertStatement = $connection->prepare("
+            INSERT INTO `residents` (name, phoneNumber, email, password, status, appartmentNumber)
+            VALUES (:name, :phoneNumber, :email, :password, :status, :appartmentNumber)
+            ");
+
+        $result = $insertStatement->execute($residentRequest->toArray());
+
+        return true;
+
+    }
+
 }
