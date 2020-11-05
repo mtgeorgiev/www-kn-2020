@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <form method="POST" action="./residents.php">
+            <input type="text" name="name" placeholder="Потребителско име" /><br/>
+            <input type="password" name="password"  placeholder="Парола"/></br>
+            <input name="phoneNumber" placeholder="Телефон"/></br>
+            <input type="email" name="email"  placeholder="Имейл адрес"/></br>
+            <select name="status">
+                <option value="owner">Собственик</option>
+                <option value="tenant">Наемател</option>
+            </select><br/>
+
+            <input name="appartmentNumber" placeholder="Номер на апартамента"/></br>
+
+            <input type="submit" value ="Регистрирай ме!" />
+        </form>
+    </body>
+</html>
