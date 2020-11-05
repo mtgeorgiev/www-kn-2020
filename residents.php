@@ -15,11 +15,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'POST': {
 
-        $resident = new NewResidentRequest($_POST);
+        $residentRequest = new NewResidentRequest($_POST);
 
-        $resident->validate(); // will throw exception if not valid
+        try {
+            $residentRequest->validate();
+        } catch (RequestValidationException $ex) {
+            die(json_encode($ex->getErrors()));
+        }
 
-        $added = $userCtrl->addNewResident($resident);
+        $added = $userCtrl->addNewResident($residentRequest);
 
         echo json_encode(['success' => $added]);
 

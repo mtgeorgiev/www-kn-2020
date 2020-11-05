@@ -1,11 +1,21 @@
 <?php
 
+/**
+ * User who live in the building
+ */
 class Resident extends User {
 
     private string $status;
 
     private string $apartmentNumber;
 
+    /**
+     * Constructs a Resident object
+     * 
+     * @param int $id resident ID
+     * @param string $name resident full name
+     * 
+     */
     public function __construct(int $id, string $name, string $phoneNumber, string $email, string $apartmentNumber, string $status) {
         parent::__construct($id, $name, $phoneNumber, $email);
         $this->status = $status;
@@ -18,10 +28,6 @@ class Resident extends User {
 
     public function getStatus(): string {
         return $status;
-    }
-
-    public function toArray(): array {
-        return $this->jsonSerialize();
     }
 
     public function jsonSerialize(): array {

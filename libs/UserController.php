@@ -28,17 +28,26 @@ class UserController {
     }
 
     public function addNewResident(NewResidentRequest $residentRequest): bool {
+        
+        try {
+            $connection = (new Db())->getConnection();
 
-        $connection = (new Db())->getConnection();
+            $insertStatement = $connection->prepare("
+                INSERT INTO `residents` (name, phoneNumber, email, password, status, appartmentNumber)
+                VALUES (:name, :phoneNumber, :email, :password, :status, :appartmentNumber)
+                ");
 
-        $insertStatement = $connection->prepare("
-            INSERT INTO `residents` (name, phoneNumber, email, password, status, appartmentNumber)
-            VALUES (:name, :phoneNumber, :email, :password, :status, :appartmentNumber)
-            ");
+            $result = $insertStatement->execute($residentRequest->toArray());
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            return false;
+        }
 
-        $result = $insertStatement->execute($residentRequest->toArray());
+        if ($result === false) {
+            // var_dump($insertStatement->errorInfo());
+        }
 
-        return true;
+        return $result;
 
     }
 
