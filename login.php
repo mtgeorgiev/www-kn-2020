@@ -2,15 +2,20 @@
 
 session_start();
 
-// validate request is optional
+spl_autoload_register(function($className) {
+    require_once("./libs/$className.php");
+});
+
+
+// request validation is optional
 
 // check if user is valid with valid password
-// $loginSuccessful = $checkLoginController->check($_POST);
+$loggedUser = CheckLoginController::check($_POST);
 
-$loginSuccessful = true;
+$loginSuccessful = $loggedUser !== null;
 
 if ($loginSuccessful) {
-    $_SESSION['user_id'] = 16;
+    $_SESSION['user_id'] = $loggedUser['id'];
 }
 
 echo json_encode(['success' => $loginSuccessful]);
