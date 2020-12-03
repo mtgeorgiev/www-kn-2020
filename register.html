@@ -2,11 +2,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>Регистрация на нов потребител</title>
+        <script type="text/javascript" src="./scripts/register.js" ></script>
     </head>
     <body>
-        <form method="POST" action="./residents.php">
-            <input type="text" name="name" placeholder="Потребителско име" /><br/>
-            <input type="password" name="password"  placeholder="Парола"/></br>
+        <img src="images/loader.gif" id="loader"/>
+        <form method="POST" action="./residents.php" style="display:none;" id="register-form">
+            <input type="text" name="name" placeholder="Потребителско име" class="c1 c2" id="name-input" /><br/>
+            <input type="password" name="password"  placeholder="Парола" class="c2 c3"/></br>
             <input name="phoneNumber" placeholder="Телефон"/></br>
             <input type="email" name="email" placeholder="Имейл адрес"/></br>
             <select name="status">
@@ -16,9 +18,7 @@
 
             <input name="appartmentNumber" placeholder="Номер на апартамента"/></br>
 
-            <input type="submit" value ="Регистрирай ме!" />
+            <input type="submit" value ="Регистрирай ме!" id="register-button" />
         </form>
-
-        <a href="logout.php">Излез</a>
     </body>
 </html>

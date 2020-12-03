@@ -84,7 +84,7 @@ class NewResidentRequest {
     public function toArray(): array {
         return [
             'email' => $this->email,
-            'password' => generateHashedPassword(),
+            'password' => $this->generateHashedPassword(),
             'name' => $this->name,
             'phoneNumber' => $this->phoneNumber,
             'status' => $this->status,
