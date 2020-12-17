@@ -4,6 +4,8 @@ class CheckLoginController {
 
     public static function check(array $loginData): ?array {
 
+        var_dump($loginData);
+
         try {
             $connection = (new Db())->getConnection();
 

@@ -20,10 +20,28 @@ class Resident {
                                         <span class="name">name: ${this.name}</span>,
                                         <span class="email">email: ${this.email}</span>
                                     </div>`;
-        return residentWrapper;
+
+        const div = document.createElement('div');
+        div.setAttribute('id', this.id);
+
+        // name
+        const spanName = document.createElement('span');
+        spanName.setAttribute('class', 'name');
+        const nameText = document.createTextNode('name: ' + this.name);
+        spanName.appendChild(nameText);
+
+        // email
+        const spanEmail = document.createElement('span');
+        spanEmail.setAttribute('class', 'email');
+        const emailText = document.createTextNode('email: ' + this.email);
+        spanEmail.appendChild(emailText);
+
+        div.appendChild(spanName);
+        div.appendChild(spanEmail);
+
+        return div;
     }
 }
-
 
 /**
  * Methods that display parts of the page
