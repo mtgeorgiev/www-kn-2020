@@ -12,12 +12,15 @@ const submitFormHandler = event => {
 
     fetch(formElement.getAttribute('action'), {
         method: 'POST',
-        // credentials: "same-origin",
-        // headers: {
-        //     'Content-Type': 'application/json',  // sent request (alt: 'application/x-www-form-urlencoded')
-        //     'Accept':       'application/json'   // expected data sent back
-        // },
         body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(({success}) => {
+        if (success) {
+            document.location = 'homepage.html';
+        } else {
+            console.error('invalid login');
+        }
     });
 
     // handle response

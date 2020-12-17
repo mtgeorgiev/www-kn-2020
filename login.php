@@ -15,7 +15,6 @@ $loggedUser = CheckLoginController::check($postData);
 
 $loginSuccessful = $loggedUser !== null;
 
-var_dump($_SESSION);
 if ($loginSuccessful) {
     $_SESSION['user_id'] = $loggedUser['id'];
 }
